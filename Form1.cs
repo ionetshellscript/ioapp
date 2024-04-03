@@ -5,16 +5,31 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IOnetApp
 {
-    public partial class Form1 : Form
+    public partial class formMain : Form
     {
-        public Form1()
+        public formMain()
         {
             InitializeComponent();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            FormAdd form = new FormAdd();
+            form.ShowDialog();
+        }
+
+        private void formMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(FormLoading.GetInstance() != null)
+            {
+                FormLoading.GetInstance().Close();
+            }
         }
     }
 }
