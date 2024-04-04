@@ -18,8 +18,6 @@ namespace IOnetApp.Docker
                 RedirectStandardOutput = true, // Định hướng lại đầu ra chuẩn để đọc
                 CreateNoWindow = true // Không tạo cửa sổ mới
             };
-
-            
             // Tạo và cấu hình Process
             using (Process process = new Process())
             {
