@@ -7,7 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b87ec5b-455f-4526-98dd-5abad152b720" name="Changes" comment="" />
+    <list default="true" id="3b87ec5b-455f-4526-98dd-5abad152b720" name="Changes" comment="commit code merge">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.IOnetApp/.idea/shelf/Uncommitted_changes_before_Merge_at_4_4_2024_9_00_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IOnetApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IOnetApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docker/CommandLine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/CommandLine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IOnetApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/IOnetApp.csproj" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,8 +20,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock://D:/Code/Window form/IOnetApp/Docker/CommandLine.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Docker/DockerCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Code/Window form/IOnetApp/Form1.Designer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -77,6 +80,7 @@
       <updated>1712150398054</updated>
       <workItem from="1712150399183" duration="5990000" />
       <workItem from="1712234087288" duration="2829000" />
+      <workItem from="1712241864339" duration="320000" />
     </task>
     <task id="LOCAL-00001" summary="git add .">
       <option name="closed" value="true" />
@@ -94,7 +98,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712241791760</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="commit code merge">
+      <option name="closed" value="true" />
+      <created>1712242184978</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712242184978</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -116,6 +128,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="git add ." />
     <MESSAGE value="ad" />
-    <option name="LAST_COMMIT_MESSAGE" value="ad" />
+    <MESSAGE value="commit code merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit code merge" />
   </component>
 </project>
