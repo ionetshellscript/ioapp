@@ -1,0 +1,274 @@
+Index: Docker/CommandLine.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\r\nusing System.Collections.Generic;\r\nusing System.Diagnostics;\r\nusing System.Text;\r\n\r\nnamespace IOnetApp.Docker\r\n{\r\n    public static class CommandLine\r\n    {\r\n        public static List<DockerContainer> CheckContainerStatus()\r\n        {\r\n            List<DockerContainer> containers = new List<DockerContainer>();\r\n            var containersName = GetAllContainerId();\r\n\r\n\r\n\r\n            return containers;\r\n        }\r\n\r\n        public static DockerContainer GetContainerStatus(string containerUID)\r\n        {\r\n            DockerContainer container = new DockerContainer();\r\n            string data = RunCommand(\"docker\", $\"stats --no-stream {containerUID}\");\r\n            // Format data to container obj\r\n            return container;\r\n        }\r\n        \r\n        public static void StopAllContainer()\r\n        {\r\n            var containerName = GetAllContainerId();\r\n            foreach (var container in containerName)\r\n            {\r\n                // Check valid uuid\r\n                if(container.Length == 12)\r\n                    StopContainer(container);\r\n            }\r\n        }\r\n\r\n        public static List<string> GetAllContainerId()\r\n        {\r\n            string containerList = RunCommand(\"docker\", \"container ls -q\");\r\n            var containerName = containerList.Split(new[] { \"\\r\\n\"}, StringSplitOptions.RemoveEmptyEntries);\r\n            return new List<string>(containerName);\r\n        }\r\n        \r\n        public static void StopContainer(string containerName)\r\n        {\r\n            // Stop container\r\n            RunCommand(\"docker\", $\"container stop {containerName}\");\r\n            // Remove container\r\n            RunCommand(\"docker\", $\"container rm {containerName}\");\r\n        }\r\n\r\n        public static string RunCommand(string fileName, string argument)\r\n        {\r\n            ProcessStartInfo startInfo = new ProcessStartInfo()\r\n            {\r\n                FileName = fileName, // Thiết lập docker làm lệnh cần chạy\r\n                Arguments = argument, // Sử dụng \"ps\" để liệt kê các container đang chạy\r\n                UseShellExecute = false,\r\n                RedirectStandardOutput = true, // Định hướng lại đầu ra chuẩn để đọc\r\n                CreateNoWindow = true // Không tạo cửa sổ mới\r\n            };\r\n\r\n            // Tạo và cấu hình Process\r\n            using (Process process = new Process())\r\n            {\r\n                process.StartInfo = startInfo;\r\n\r\n                StringBuilder output = new StringBuilder();\r\n                process.OutputDataReceived += (sender, args) => output.AppendLine(args.Data); // Thu thập dữ liệu đầu ra\r\n\r\n                process.Start(); // Bắt đầu process\r\n                process.BeginOutputReadLine(); // Bắt đầu đọc đầu ra chuẩn\r\n\r\n                process.WaitForExit(); // Chờ đợi cho đến khi process kết thúc\r\n                \r\n                return output.ToString();\r\n\r\n            }\r\n        }\r\n\r\n\r\n    }\r\n    \r\n    \r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Docker/CommandLine.cs b/Docker/CommandLine.cs
+--- a/Docker/CommandLine.cs	(revision e92299867c49d9419442b0d6a141abee29a11b82)
++++ b/Docker/CommandLine.cs	(date 1712153322981)
+@@ -7,49 +7,6 @@
+ {
+     public static class CommandLine
+     {
+-        public static List<DockerContainer> CheckContainerStatus()
+-        {
+-            List<DockerContainer> containers = new List<DockerContainer>();
+-            var containersName = GetAllContainerId();
+-
+-
+-
+-            return containers;
+-        }
+-
+-        public static DockerContainer GetContainerStatus(string containerUID)
+-        {
+-            DockerContainer container = new DockerContainer();
+-            string data = RunCommand("docker", $"stats --no-stream {containerUID}");
+-            // Format data to container obj
+-            return container;
+-        }
+-        
+-        public static void StopAllContainer()
+-        {
+-            var containerName = GetAllContainerId();
+-            foreach (var container in containerName)
+-            {
+-                // Check valid uuid
+-                if(container.Length == 12)
+-                    StopContainer(container);
+-            }
+-        }
+-
+-        public static List<string> GetAllContainerId()
+-        {
+-            string containerList = RunCommand("docker", "container ls -q");
+-            var containerName = containerList.Split(new[] { "\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+-            return new List<string>(containerName);
+-        }
+-        
+-        public static void StopContainer(string containerName)
+-        {
+-            // Stop container
+-            RunCommand("docker", $"container stop {containerName}");
+-            // Remove container
+-            RunCommand("docker", $"container rm {containerName}");
+-        }
+ 
+         public static string RunCommand(string fileName, string argument)
+         {
+@@ -65,8 +22,7 @@
+             // Tạo và cấu hình Process
+             using (Process process = new Process())
+             {
+-                process.StartInfo = startInfo;
+-
++                process.StartInfo = startInfo; ;
+                 StringBuilder output = new StringBuilder();
+                 process.OutputDataReceived += (sender, args) => output.AppendLine(args.Data); // Thu thập dữ liệu đầu ra
+ 
+Index: Docker/DockerContainer.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace IOnetApp.Docker\r\n{\r\n    public class DockerContainer\r\n    {\r\n        public string ID;\r\n        public string Name;\r\n        public string Image;\r\n        public string MemUsage;\r\n        public float MemPercent;\r\n        public string Status;\r\n        public string CPU;\r\n        public string Network;\r\n        public string Block;\r\n        public int pid;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Docker/DockerContainer.cs b/Docker/DockerContainer.cs
+--- a/Docker/DockerContainer.cs	(revision e92299867c49d9419442b0d6a141abee29a11b82)
++++ b/Docker/DockerContainer.cs	(date 1712152072812)
+@@ -5,12 +5,6 @@
+         public string ID;
+         public string Name;
+         public string Image;
+-        public string MemUsage;
+-        public float MemPercent;
+-        public string Status;
+         public string CPU;
+-        public string Network;
+-        public string Block;
+-        public int pid;
+     }
+ }
+\ No newline at end of file
+Index: Form1.Designer.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\r\nusing System.Diagnostics;\r\nusing System.Text;\r\nusing IOnetApp.Docker;\r\n\r\nnamespace IOnetApp\r\n{\r\n    partial class Form1\r\n    {\r\n        /// <summary>\r\n        /// Required designer variable.\r\n        /// </summary>\r\n        private System.ComponentModel.IContainer components = null;\r\n\r\n        /// <summary>\r\n        /// Clean up any resources being used.\r\n        /// </summary>\r\n        /// <param name=\"disposing\">true if managed resources should be disposed; otherwise, false.</param>\r\n        protected override void Dispose(bool disposing)\r\n        {\r\n            if (disposing && (components != null))\r\n            {\r\n                components.Dispose();\r\n            }\r\n\r\n            base.Dispose(disposing);\r\n        }\r\n\r\n        #region Windows Form Designer generated code\r\n\r\n        /// <summary>\r\n        /// Required method for Designer support - do not modify\r\n        /// the contents of this method with the code editor.\r\n        /// </summary>\r\n        private void InitializeComponent()\r\n        {\r\n            this.components = new System.ComponentModel.Container();\r\n            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;\r\n            this.ClientSize = new System.Drawing.Size(800, 450);\r\n            this.Text = \"Form1\";\r\n            PrintDockerStat();\r\n        }\r\n\r\n        public void PrintDockerStat()\r\n        {\r\n            var containes = CommandLine.GetAllContainerId();\r\n            foreach (var containerUID in containes)\r\n            {\r\n                string data = CommandLine.RunCommand(\"docker\", $\"stats --no-stream {containerUID}\");\r\n                Console.WriteLine($\"{containerUID} data: \" + data);\r\n            }\r\n        }\r\n\r\n        #endregion\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Form1.Designer.cs b/Form1.Designer.cs
+--- a/Form1.Designer.cs	(revision e92299867c49d9419442b0d6a141abee29a11b82)
++++ b/Form1.Designer.cs	(date 1712155872907)
+@@ -43,12 +43,7 @@
+ 
+         public void PrintDockerStat()
+         {
+-            var containes = CommandLine.GetAllContainerId();
+-            foreach (var containerUID in containes)
+-            {
+-                string data = CommandLine.RunCommand("docker", $"stats --no-stream {containerUID}");
+-                Console.WriteLine($"{containerUID} data: " + data);
+-            }
++            DockerCommand.CheckDocker();
+         }
+ 
+         #endregion
+Index: .idea/.idea.IOnetApp/.idea/.gitignore
+===================================================================
+diff --git a/.idea/.idea.IOnetApp/.idea/.gitignore b/.idea/.idea.IOnetApp/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.idea.IOnetApp/.idea/.gitignore	(revision e92299867c49d9419442b0d6a141abee29a11b82)
++++ /dev/null	(revision e92299867c49d9419442b0d6a141abee29a11b82)
+@@ -1,13 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+-# Rider ignored files
+-/modules.xml
+-/projectSettingsUpdater.xml
+-/contentModel.xml
+-/.idea.IOnetApp.iml
+-# Editor-based HTTP Client requests
+-/httpRequests/
+-# Datasource local storage ignored files
+-/dataSources/
+-/dataSources.local.xml
+Index: IOnetApp.csproj
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project ToolsVersion=\"15.0\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">\r\n    <Import Project=\"$(MSBuildExtensionsPath)\\$(MSBuildToolsVersion)\\Microsoft.Common.props\" Condition=\"Exists('$(MSBuildExtensionsPath)\\$(MSBuildToolsVersion)\\Microsoft.Common.props')\"/>\r\n    <PropertyGroup>\r\n        <Configuration Condition=\" '$(Configuration)' == '' \">Debug</Configuration>\r\n        <Platform Condition=\" '$(Platform)' == '' \">AnyCPU</Platform>\r\n        <ProjectGuid>{C4980845-FAEB-4838-AEFF-6ABD5D9DAEFD}</ProjectGuid>\r\n        <OutputType>WinExe</OutputType>\r\n        <RootNamespace>IOnetApp</RootNamespace>\r\n        <AssemblyName>IOnetApp</AssemblyName>\r\n        <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>\r\n        <FileAlignment>512</FileAlignment>\r\n        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>\r\n        <Deterministic>true</Deterministic>\r\n    </PropertyGroup>\r\n    <PropertyGroup Condition=\" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' \">\r\n        <PlatformTarget>AnyCPU</PlatformTarget>\r\n        <DebugSymbols>true</DebugSymbols>\r\n        <DebugType>full</DebugType>\r\n        <Optimize>false</Optimize>\r\n        <OutputPath>bin\\Debug\\</OutputPath>\r\n        <DefineConstants>DEBUG;TRACE</DefineConstants>\r\n        <ErrorReport>prompt</ErrorReport>\r\n        <WarningLevel>4</WarningLevel>\r\n    </PropertyGroup>\r\n    <PropertyGroup Condition=\" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' \">\r\n        <PlatformTarget>AnyCPU</PlatformTarget>\r\n        <DebugType>pdbonly</DebugType>\r\n        <Optimize>true</Optimize>\r\n        <OutputPath>bin\\Release\\</OutputPath>\r\n        <DefineConstants>TRACE</DefineConstants>\r\n        <ErrorReport>prompt</ErrorReport>\r\n        <WarningLevel>4</WarningLevel>\r\n    </PropertyGroup>\r\n    <ItemGroup>\r\n        <Reference Include=\"System\"/>\r\n        <Reference Include=\"System.Core\"/>\r\n        <Reference Include=\"System.Xml.Linq\"/>\r\n        <Reference Include=\"System.Data.DataSetExtensions\"/>\r\n        <Reference Include=\"Microsoft.CSharp\"/>\r\n        <Reference Include=\"System.Data\"/>\r\n        <Reference Include=\"System.Deployment\"/>\r\n        <Reference Include=\"System.Drawing\"/>\r\n        <Reference Include=\"System.Net.Http\"/>\r\n        <Reference Include=\"System.Windows.Forms\"/>\r\n        <Reference Include=\"System.Xml\"/>\r\n    </ItemGroup>\r\n    <ItemGroup>\r\n        <Compile Include=\"Docker\\CommandLine.cs\" />\r\n        <Compile Include=\"Docker\\DockerContainer.cs\" />\r\n        <Compile Include=\"Form1.cs\">\r\n            <SubType>Form</SubType>\r\n        </Compile>\r\n        <Compile Include=\"Form1.Designer.cs\">\r\n            <DependentUpon>Form1.cs</DependentUpon>\r\n        </Compile>\r\n        <Compile Include=\"Program.cs\"/>\r\n        <Compile Include=\"Properties\\AssemblyInfo.cs\"/>\r\n        <EmbeddedResource Include=\"Properties\\Resources.resx\">\r\n            <Generator>ResXFileCodeGenerator</Generator>\r\n            <LastGenOutput>Resources.Designer.cs</LastGenOutput>\r\n            <SubType>Designer</SubType>\r\n        </EmbeddedResource>\r\n        <Compile Include=\"Properties\\Resources.Designer.cs\">\r\n            <AutoGen>True</AutoGen>\r\n            <DependentUpon>Resources.resx</DependentUpon>\r\n        </Compile>\r\n        <None Include=\"Properties\\Settings.settings\">\r\n            <Generator>SettingsSingleFileGenerator</Generator>\r\n            <LastGenOutput>Settings.Designer.cs</LastGenOutput>\r\n        </None>\r\n        <Compile Include=\"Properties\\Settings.Designer.cs\">\r\n            <AutoGen>True</AutoGen>\r\n            <DependentUpon>Settings.settings</DependentUpon>\r\n            <DesignTimeSharedInput>True</DesignTimeSharedInput>\r\n        </Compile>\r\n    </ItemGroup>\r\n    <ItemGroup>\r\n        <None Include=\"App.config\"/>\r\n    </ItemGroup>\r\n    <Import Project=\"$(MSBuildToolsPath)\\Microsoft.CSharp.targets\"/>\r\n</Project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/IOnetApp.csproj b/IOnetApp.csproj
+--- a/IOnetApp.csproj	(revision e92299867c49d9419442b0d6a141abee29a11b82)
++++ b/IOnetApp.csproj	(date 1712151159808)
+@@ -47,6 +47,7 @@
+     </ItemGroup>
+     <ItemGroup>
+         <Compile Include="Docker\CommandLine.cs" />
++        <Compile Include="Docker\DockerCommand.cs" />
+         <Compile Include="Docker\DockerContainer.cs" />
+         <Compile Include="Form1.cs">
+             <SubType>Form</SubType>
+Index: .idea/.idea.IOnetApp/.idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"$PROJECT_DIR$/../../../\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.IOnetApp/.idea/vcs.xml b/.idea/.idea.IOnetApp/.idea/vcs.xml
+--- a/.idea/.idea.IOnetApp/.idea/vcs.xml	(revision e92299867c49d9419442b0d6a141abee29a11b82)
++++ b/.idea/.idea.IOnetApp/.idea/vcs.xml	(date 1712150637465)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$/../../../" vcs="Git" />
++    <mapping directory="" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: Docker/DockerCommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Docker/DockerCommand.cs b/Docker/DockerCommand.cs
+new file mode 100644
+--- /dev/null	(date 1712155856057)
++++ b/Docker/DockerCommand.cs	(date 1712155856057)
+@@ -0,0 +1,88 @@
++using System;
++using System.Collections.Generic;
++
++namespace IOnetApp.Docker
++{
++    public static class DockerCommand
++    {
++        public static List<DockerContainer> CheckContainerStatus()
++        {
++            List<DockerContainer> containers = new List<DockerContainer>();
++            var containersName = GetAllContainerId();
++            foreach (var id in containersName)
++            {
++                containers.Add(GetContainerStatus(id));
++            }
++            return containers;
++        }
++
++        public static DockerContainer GetContainerStatus(string containerUID)
++        {
++            DockerContainer container = new DockerContainer();
++            string data = CommandLine.RunCommand("docker", $"stats --no-stream {containerUID} --format \"{{{{.ID}}}}:{{{{.Name}}}}:{{{{.CPUPerc}}}}\"");
++            var containerParams = data.Trim(new []{'\r', '\n'}).Split(':');
++            if (containerParams.Length >= 3)
++            {
++                container.ID = containerParams[0];
++                container.Name = containerParams[1];
++                container.CPU = containerParams[2];
++            }
++            string imageName = CommandLine.RunCommand("docker", $"inspect --format \"{{{{.Config.Image}}}}\" {containerUID}").TrimEnd(new []{'\r', '\n'}).Split('@')[0];
++            container.Image = imageName;
++            // Format data to container obj
++            return container;
++        }
++        public static void StopAllContainer()
++        {
++            var containerName = GetAllContainerId();
++            foreach (var container in containerName)
++            {
++                // Check valid uuid
++                if(container.Length == 12)
++                    StopContainer(container);
++            }
++        }
++
++        public static List<string> GetAllContainerId()
++        {
++            string containerList = CommandLine.RunCommand("docker", "container ls -q");
++            var containerName = containerList.Split(new[] { "\r\n"}, StringSplitOptions.RemoveEmptyEntries);
++            return new List<string>(containerName);
++        }
++        
++        public static void StopContainer(string containerName)
++        {
++            // Stop container
++            CommandLine.RunCommand("docker", $"container stop {containerName}");
++            // Remove container
++            CommandLine.RunCommand("docker", $"container rm {containerName}");
++        }
++
++        public static void RunNewWorker(string deviceName, string deviceID, string userID)
++        {
++            StopAllContainer();
++            var param =
++                $"run -d -v /var/run/docker.sock:/var/run/docker.sock -e DEVICE_NAME=\"{deviceName.Trim(new []{'\r', '\n', ' '})}\" -e DEVICE_ID=\"{deviceID.Trim(new []{'\r', '\n', ' '})}\" -e USER_ID=\"{userID.Trim(new []{'\r', '\n', ' '})}\" -e OPERATING_SYSTEM=\"Windows\" -e USEGPUS=true --pull always ionetcontainers/io-launch:v0.1";
++        }
++
++        public static bool CheckDocker()
++        {
++            try
++            {
++                var result = CommandLine.RunCommand("dockera", "--version");
++                if(result.Contains("version"))
++                    return true;
++                else
++                {
++                    return false;
++                }
++            }
++            catch (Exception e)
++            {
++                
++                return false;
++
++            }
++        }
++    }
++}
+\ No newline at end of file

@@ -164,12 +164,7 @@ namespace IOnetApp
 
         public void PrintDockerStat()
         {
-            var containes = CommandLine.GetAllContainerId();
-            foreach (var containerUID in containes)
-            {
-                string data = CommandLine.RunCommand("docker", $"stats --no-stream {containerUID}");
-                Console.WriteLine($"{containerUID} data: " + data);
-            }
+            CommandLine.RunCommand("docker", "ps");
         }
 
         #endregion
