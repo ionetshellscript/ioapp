@@ -104,8 +104,6 @@ namespace IOnetApp.Docker
                     // Kiểm tra xem có phải là driver NVIDIA không
                     if (name != null && name.ToLower().Contains("nvidia"))
                     {
-                        Console.WriteLine($"Driver NVIDIA được tìm thấy: {name}");
-                        Console.WriteLine($"Phiên bản driver: {driverVersion}");
                         return true;
                     }
                 }
