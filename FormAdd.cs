@@ -36,7 +36,6 @@ namespace IOnetApp
                 UserId = UserID
             });
         }
-        
         private void RunCommand_Click(object sender, EventArgs e)
         {
             var worketIO = IoNetWorker.ParseWorkerFromCommand(commandText.Text);

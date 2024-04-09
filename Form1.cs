@@ -37,6 +37,7 @@ namespace IOnetApp
             {
                 SetupTimer();
                 LoadDataWorker();
+                bool isHasNvidia = DockerCommand.CheckNvidia();
             };
         }
 
