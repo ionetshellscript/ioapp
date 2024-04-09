@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32407.337
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOnetApp", "IOnetApp.csproj", "{C4980845-FAEB-4838-AEFF-6ABD5D9DAEFD}"
 EndProject
 Global
@@ -12,5 +15,11 @@ Global
 		{C4980845-FAEB-4838-AEFF-6ABD5D9DAEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4980845-FAEB-4838-AEFF-6ABD5D9DAEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4980845-FAEB-4838-AEFF-6ABD5D9DAEFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EFC2364F-01E5-4A73-9EEA-A16B37CD2217}
 	EndGlobalSection
 EndGlobal

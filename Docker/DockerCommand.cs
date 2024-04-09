@@ -69,7 +69,7 @@ namespace IOnetApp.Docker
         {
             try
             {
-                var result = CommandLine.RunCommand("dockera", "--version");
+                var result = CommandLine.RunCommand("docker", "--version");
                 if(result.Contains("version"))
                     return true;
                 else

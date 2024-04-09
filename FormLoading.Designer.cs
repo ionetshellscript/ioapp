@@ -29,36 +29,40 @@ namespace IOnetApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbContent = new System.Windows.Forms.Label();
             this.lbDot = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // lbContent
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(82, 86);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Loading";
+            this.lbContent.AutoSize = true;
+            this.lbContent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbContent.Location = new System.Drawing.Point(109, 106);
+            this.lbContent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbContent.Name = "lbContent";
+            this.lbContent.Size = new System.Drawing.Size(110, 31);
+            this.lbContent.TabIndex = 0;
+            this.lbContent.Text = "Loading";
             // 
             // lbDot
             // 
             this.lbDot.AutoSize = true;
             this.lbDot.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDot.Location = new System.Drawing.Point(177, 86);
+            this.lbDot.Location = new System.Drawing.Point(268, 106);
+            this.lbDot.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDot.Name = "lbDot";
-            this.lbDot.Size = new System.Drawing.Size(0, 26);
+            this.lbDot.Size = new System.Drawing.Size(38, 31);
             this.lbDot.TabIndex = 1;
+            this.lbDot.Text = "...";
             // 
             // FormLoading
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 203);
+            this.ClientSize = new System.Drawing.Size(439, 250);
             this.Controls.Add(this.lbDot);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbContent);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormLoading";
@@ -70,7 +74,7 @@ namespace IOnetApp
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbContent;
         private System.Windows.Forms.Label lbDot;
     }
 }

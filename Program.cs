@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IOnetApp.Docker;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,14 @@ namespace IOnetApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formMain());
+            if (DockerCommand.CheckDocker())
+            {
+                Application.Run(new formMain());
+            }
+            else
+            {
+                Application.Run(new NVIDIAForm());
+            }
         }
     }
 }
