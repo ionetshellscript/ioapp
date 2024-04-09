@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Management;
 
 namespace IOnetApp.Docker
 {
@@ -69,7 +70,7 @@ namespace IOnetApp.Docker
         {
             try
             {
-                var result = CommandLine.RunCommand("dockera", "--version");
+                var result = CommandLine.RunCommand("docker", "--version");
                 if(result.Contains("version"))
                     return true;
                 else
@@ -83,6 +84,35 @@ namespace IOnetApp.Docker
                 return false;
 
             }
+        }
+
+        public static bool CheckNvidia()
+        {
+            // Tạo một truy vấn WMI để lấy thông tin về các driver video
+            SelectQuery query = new SelectQuery("SELECT * FROM Win32_VideoController");
+
+            // Sử dụng ManagementObjectSearcher để thực thi truy vấn
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+            {
+                // Duyệt qua kết quả để tìm driver NVIDIA
+                foreach (ManagementObject mo in searcher.Get())
+                {
+                    // Lấy tên và phiên bản của driver
+                    string name = mo["Name"] as string;
+                    string driverVersion = mo["DriverVersion"] as string;
+
+                    // Kiểm tra xem có phải là driver NVIDIA không
+                    if (name != null && name.ToLower().Contains("nvidia"))
+                    {
+                        Console.WriteLine($"Driver NVIDIA được tìm thấy: {name}");
+                        Console.WriteLine($"Phiên bản driver: {driverVersion}");
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+
         }
     }
 }

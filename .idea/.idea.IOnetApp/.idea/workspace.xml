@@ -7,27 +7,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b87ec5b-455f-4526-98dd-5abad152b720" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/IONET/IoNetWorker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.IOnetApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IOnetApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Form1.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.Designer.cs" afterDir="false" />
+    <list default="true" id="3b87ec5b-455f-4526-98dd-5abad152b720" name="Changes" comment="update code">
+      <change beforePath="$PROJECT_DIR$/Docker/DockerCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/DockerCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Form1.resx" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.resx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FormAdd.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FormAdd.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FormAdd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FormAdd.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IOnetApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/IOnetApp.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "haiduong183724"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="8c996744-7246-4228-af9a-30f2de6efe41" />
+        <option name="url" value="https://github.com/ionetshellscript/ioapp.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1175e77e945b418ebce4dea98d1883fd5b6520/2b/3fa84d17/Form.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1175e77e945b418ebce4dea98d1883fd5b6520/7f/19b99776/Control.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cc5db45973834e0395821fdfb9e6ad5035f220/9d/aa3920c8/DataColumnCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de6c0f4d9ba048da951d38ac0a5d2f03355db8/5a/8f7bd230/DataTable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Code/Window form/IOnetApp/Form1.Designer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/Code/Window form/IOnetApp/Form1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -93,7 +101,7 @@
       <workItem from="1712241864339" duration="3650000" />
       <workItem from="1712406246878" duration="5519000" />
       <workItem from="1712446023942" duration="11326000" />
-      <workItem from="1712585998834" duration="4588000" />
+      <workItem from="1712585998834" duration="8474000" />
     </task>
     <task id="LOCAL-00001" summary="git add .">
       <option name="closed" value="true" />
@@ -127,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712242355207</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update code">
+      <option name="closed" value="true" />
+      <created>1712668283423</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712668283423</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,9 +167,27 @@
     <MESSAGE value="ad" />
     <MESSAGE value="commit code merge" />
     <MESSAGE value="a" />
-    <option name="LAST_COMMIT_MESSAGE" value="a" />
+    <MESSAGE value="update code" />
+    <option name="LAST_COMMIT_MESSAGE" value="update code" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Form1.cs</url>
+          <line>39</line>
+          <properties documentPath="D:\Code\Window form\IOnetApp\Form1.cs" initialLine="39" containingFunctionPresentation="Lambda expression inside Constructor 'formMain'">
+            <startOffsets>
+              <option value="1322" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1369" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#System.Windows.Forms.DataGridViewRowCollection" memberName="DataGridView" />
